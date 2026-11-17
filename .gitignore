@@ -1,0 +1,42 @@
+# Gradle / build output
+.gradle/
+build/
+/captures
+.externalNativeBuild
+.cxx
+.kotlin/
+
+# Local machine config
+local.properties
+
+# Android Studio / IntelliJ
+*.iml
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+/.idea/deploymentTargetSelector.xml
+/.idea/shelf/
+
+# Signing material and secrets: never commit
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+keystore.properties
+signing.properties
+.env
+.env.*
+google-services.json
+
+# Packaged outputs
+*.apk
+*.aab
+*.ap_
+
+# OS noise
+.DS_Store
+Thumbs.db

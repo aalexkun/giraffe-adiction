@@ -1,0 +1,529 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "f07c3bba30f45b7ac0898d59a2676b51",
+    "entities": [
+      {
+        "tableName": "app_rule",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`packageName` TEXT NOT NULL, `label` TEXT NOT NULL, `graceSec` INTEGER NOT NULL, `maxSessionMin` INTEGER NOT NULL, `openingsEnabled` INTEGER NOT NULL DEFAULT 1, `dailyOpenings` INTEGER NOT NULL DEFAULT 1, `timeBudgetEnabled` INTEGER NOT NULL DEFAULT 0, `dailyMinutes` INTEGER NOT NULL DEFAULT 30, `cooldownEnabled` INTEGER NOT NULL DEFAULT 0, `cooldownSec` INTEGER NOT NULL DEFAULT 120, `blockedWindows` TEXT NOT NULL, `enabled` INTEGER NOT NULL, `addedAt` INTEGER NOT NULL, PRIMARY KEY(`packageName`))",
+        "fields": [
+          {
+            "fieldPath": "packageName",
+            "columnName": "packageName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "label",
+            "columnName": "label",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "graceSec",
+            "columnName": "graceSec",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maxSessionMin",
+            "columnName": "maxSessionMin",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "openingsEnabled",
+            "columnName": "openingsEnabled",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "1"
+          },
+          {
+            "fieldPath": "dailyOpenings",
+            "columnName": "dailyOpenings",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "1"
+          },
+          {
+            "fieldPath": "timeBudgetEnabled",
+            "columnName": "timeBudgetEnabled",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "dailyMinutes",
+            "columnName": "dailyMinutes",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "30"
+          },
+          {
+            "fieldPath": "cooldownEnabled",
+            "columnName": "cooldownEnabled",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "cooldownSec",
+            "columnName": "cooldownSec",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "120"
+          },
+          {
+            "fieldPath": "blockedWindows",
+            "columnName": "blockedWindows",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enabled",
+            "columnName": "enabled",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "addedAt",
+            "columnName": "addedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "packageName"
+          ]
+        }
+      },
+      {
+        "tableName": "day_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`packageName` TEXT NOT NULL, `dayKey` TEXT NOT NULL, `state` TEXT NOT NULL, `sessionStartedAt` INTEGER, `leftAt` INTEGER, `pausedAt` INTEGER, `sessionsUsed` INTEGER NOT NULL DEFAULT 0, `usedMillis` INTEGER NOT NULL DEFAULT 0, `cooldownEndsAt` INTEGER, `appliedSuspended` INTEGER NOT NULL, `applyPending` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL, PRIMARY KEY(`packageName`, `dayKey`))",
+        "fields": [
+          {
+            "fieldPath": "packageName",
+            "columnName": "packageName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dayKey",
+            "columnName": "dayKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "state",
+            "columnName": "state",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sessionStartedAt",
+            "columnName": "sessionStartedAt",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "leftAt",
+            "columnName": "leftAt",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "pausedAt",
+            "columnName": "pausedAt",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "sessionsUsed",
+            "columnName": "sessionsUsed",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "usedMillis",
+            "columnName": "usedMillis",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "cooldownEndsAt",
+            "columnName": "cooldownEndsAt",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "appliedSuspended",
+            "columnName": "appliedSuspended",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "applyPending",
+            "columnName": "applyPending",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "packageName",
+            "dayKey"
+          ]
+        }
+      },
+      {
+        "tableName": "app_visit",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `packageName` TEXT NOT NULL, `startedAt` INTEGER NOT NULL, `endedAt` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packageName",
+            "columnName": "packageName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startedAt",
+            "columnName": "startedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "endedAt",
+            "columnName": "endedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_app_visit_startedAt",
+            "unique": false,
+            "columnNames": [
+              "startedAt"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_app_visit_startedAt` ON `${TABLE_NAME}` (`startedAt`)"
+          }
+        ]
+      },
+      {
+        "tableName": "recommendation",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`packageName` TEXT NOT NULL, `label` TEXT NOT NULL, `policy` TEXT NOT NULL, `count` INTEGER NOT NULL, `avgMillis` INTEGER NOT NULL, `spanMillis` INTEGER NOT NULL, `between` TEXT NOT NULL, `firstSeenAt` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL, `loggedCount` INTEGER NOT NULL, `dismissedUntil` INTEGER NOT NULL, PRIMARY KEY(`packageName`))",
+        "fields": [
+          {
+            "fieldPath": "packageName",
+            "columnName": "packageName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "label",
+            "columnName": "label",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "policy",
+            "columnName": "policy",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "count",
+            "columnName": "count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "avgMillis",
+            "columnName": "avgMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spanMillis",
+            "columnName": "spanMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "between",
+            "columnName": "between",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "firstSeenAt",
+            "columnName": "firstSeenAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "loggedCount",
+            "columnName": "loggedCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dismissedUntil",
+            "columnName": "dismissedUntil",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "packageName"
+          ]
+        }
+      },
+      {
+        "tableName": "settings",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `resetHour` INTEGER NOT NULL, `homeNetworks` TEXT NOT NULL, `probeHost` TEXT NOT NULL, `probePort` INTEGER NOT NULL, `tunnelName` TEXT NOT NULL, `debounceSec` INTEGER NOT NULL, `vpnAutomationEnabled` INTEGER NOT NULL, `overrideUntil` INTEGER NOT NULL, `setupSeen` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "resetHour",
+            "columnName": "resetHour",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "homeNetworks",
+            "columnName": "homeNetworks",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "probeHost",
+            "columnName": "probeHost",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "probePort",
+            "columnName": "probePort",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tunnelName",
+            "columnName": "tunnelName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "debounceSec",
+            "columnName": "debounceSec",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vpnAutomationEnabled",
+            "columnName": "vpnAutomationEnabled",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "overrideUntil",
+            "columnName": "overrideUntil",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "setupSeen",
+            "columnName": "setupSeen",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "event_log",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `at` INTEGER NOT NULL, `kind` TEXT NOT NULL, `detail` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "at",
+            "columnName": "at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kind",
+            "columnName": "kind",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "detail",
+            "columnName": "detail",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "runtime_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `serviceRunning` INTEGER NOT NULL, `shizuku` TEXT NOT NULL, `observerMode` TEXT NOT NULL, `foregroundPackage` TEXT, `wifiConnected` INTEGER NOT NULL, `wifiSsid` TEXT, `wifiBssid` TEXT, `isHome` INTEGER NOT NULL, `homeReason` TEXT NOT NULL, `anyInternet` INTEGER NOT NULL, `vpnUp` INTEGER NOT NULL, `lastVpnTarget` TEXT, `lastVpnSentAt` INTEGER NOT NULL, `nextResetAt` INTEGER NOT NULL, `updatedAt` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serviceRunning",
+            "columnName": "serviceRunning",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shizuku",
+            "columnName": "shizuku",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "observerMode",
+            "columnName": "observerMode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "foregroundPackage",
+            "columnName": "foregroundPackage",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "wifiConnected",
+            "columnName": "wifiConnected",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wifiSsid",
+            "columnName": "wifiSsid",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "wifiBssid",
+            "columnName": "wifiBssid",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "isHome",
+            "columnName": "isHome",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "homeReason",
+            "columnName": "homeReason",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "anyInternet",
+            "columnName": "anyInternet",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vpnUp",
+            "columnName": "vpnUp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastVpnTarget",
+            "columnName": "lastVpnTarget",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "lastVpnSentAt",
+            "columnName": "lastVpnSentAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nextResetAt",
+            "columnName": "nextResetAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f07c3bba30f45b7ac0898d59a2676b51')"
+    ]
+  }
+}

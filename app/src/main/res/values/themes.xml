@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Nearly inert: Compose paints every colour. It only matters for the frame between the window
+      appearing and the first composition, which is why the window background is the blush ground
+      and the system bars are transparent here as well as in GiraffeTheme.
+    -->
+    <style name="Theme.GiraffeAddiction" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/blush</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+    <!--
+      The mandatory Android 12+ splash, dressed as the status screen minus its words: the same blush
+      ground and the bare mascot, centred. postSplashScreenTheme hands over to the theme above.
+    -->
+    <style name="Theme.GiraffeAddiction.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/blush</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_giraffe</item>
+        <item name="postSplashScreenTheme">@style/Theme.GiraffeAddiction</item>
+    </style>
+</resources>

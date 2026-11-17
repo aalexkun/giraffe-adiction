@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The bare mascot, no disc and no ring, so it hands over cleanly to the status screen's hero. -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/giraffe_awesome"
+    android:inset="@fraction/splash_icon_inset" />

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The platform hands the splash icon a 192dp slot and masks it to a 128dp circle. 17.7% inset on
+  each side lands the mascot at 124dp, the largest it can be without the horns being shaved off.
+-->
+<resources>
+    <fraction name="splash_icon_inset">17.7%</fraction>
+</resources>

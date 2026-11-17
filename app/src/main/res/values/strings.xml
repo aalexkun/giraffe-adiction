@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Giraffe Addiction</string>
+    <string name="notification_channel_service">Watcher</string>
+    <string name="notification_channel_service_desc">The always-on service that pauses apps and toggles the home VPN</string>
+    <string name="notification_channel_alerts">Attention needed</string>
+    <string name="notification_channel_alerts_desc">Shizuku stopped, or something the giraffe cannot fix alone</string>
+</resources>

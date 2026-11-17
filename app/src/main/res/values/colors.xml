@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The two palette values the platform reads before any Compose code runs. Everything else lives in
+  ui/theme/Color.kt. Keep these in step with Blush and Clay there; drift shows as a flash of the
+  wrong colour at launch.
+-->
+<resources>
+    <color name="blush">#FBF5F1</color>
+    <color name="clay">#B5483B</color>
+</resources>

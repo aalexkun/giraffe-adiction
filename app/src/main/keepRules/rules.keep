@@ -1,0 +1,6 @@
+# Shizuku instantiates the worker reflectively in its own process and talks to it over AIDL,
+# so neither the class nor the generated binder stubs may be renamed or stripped.
+-keep class com.example.giraffeaddiction.privileged.** { *; }
+-keep class rikka.hidden.compat.** { *; }
+-keep class rikka.shizuku.** { *; }
+-keep class org.lsposed.hiddenapibypass.** { *; }

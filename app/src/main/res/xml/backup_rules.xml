@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Rules and settings are worth restoring; the write-ahead log files are not. -->
+<full-backup-content>
+    <exclude domain="database" path="giraffe.db-wal" />
+    <exclude domain="database" path="giraffe.db-shm" />
+</full-backup-content>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Themed-icon layer: the sparkle mascot's own silhouette (horns, ears, neck), stars left out so it
+  still reads as this app when the launcher flattens it to one tint. Same insets as the foreground
+  so the two line up.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/ic_mono_giraffe"
+        android:bottom="26dp"
+        android:left="26dp"
+        android:right="26dp"
+        android:top="26dp" />
+</layer-list>
